@@ -298,7 +298,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Vocabularies\Vocabularies.cshtml" />
+    <Content Include="Views\Vocabularies\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

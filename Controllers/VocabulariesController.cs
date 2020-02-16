@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WordBook.Services.DataServices;
 using WordBook.Models;
+using System.Threading.Tasks;
 
 namespace WordBook.Controllers
 {
@@ -17,9 +18,10 @@ namespace WordBook.Controllers
             _vocabularies = repository;
         }
         // GET: Vocabularies
-        public ActionResult Index()
+        public async Task< ActionResult> Index()
         {
-            return View(_vocabularies.GetAllAsync());
+
+            return View( await _vocabularies.GetAllAsync());
         }
 
         // GET: Vocabularies/Details/5
