@@ -1,14 +1,17 @@
 ﻿using System;
-using System.Data.SqlClient;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
 
-namespace WordBook.Config
+namespace WordBook.Services.DataServices.LocalDB
 {
-    public class Configuration : IConfiguration
+    public class ConnectionsService : IConnections
     {
-        public string GetConnectionString(string name)
+        public string GetConnectionStringByName(string name)
         {
-            string resultConnectionString=String.Empty;
+            string resultConnectionString = String.Empty;
             string sqlExpression = $"Select ConnectionString from Connections Where Name= '{name}'";
             string localDbConnectionString;
             try
@@ -18,7 +21,7 @@ namespace WordBook.Config
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error config read: {ex.Message}",ex);
+                throw new Exception($"Error config read: {ex.Message}", ex);
             }
 
             using (var connection = new SqlConnection(localDbConnectionString))
@@ -31,8 +34,8 @@ namespace WordBook.Config
 
                     if (reader.HasRows)
                         reader.Read();
-                        // read only first record
-                        resultConnectionString = reader.GetString(0);
+                    // read only first record
+                    resultConnectionString = reader.GetString(0);
                 }
                 catch (Exception ex)
                 {
